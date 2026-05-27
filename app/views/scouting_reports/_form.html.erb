@@ -1,6 +1,6 @@
-<%= form_with(model: scouting_report) do |form| %>
+<%= form_with(model: scouting_report, local: true, class: "report-form") do |form| %>
   <% if scouting_report.errors.any? %>
-    <div style="color: red">
+    <div class="report-form-errors">
       <h2><%= pluralize(scouting_report.errors.count, "error") %> prohibited this scouting_report from being saved:</h2>
 
       <ul>
@@ -11,32 +11,39 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :player_name, style: "display: block" %>
-    <%= form.text_field :player_name %>
-  </div>
+  <article class="report-details report-form-layout">
+    <header class="report-details-header">
+      <%= form.label :player_name, class: "visually-hidden" %>
+      <%= form.text_field :player_name, class: "report-name-input", placeholder: "Player name", autofocus: scouting_report.new_record?, data: { select_on_load: scouting_report.new_record? } %>
+    </header>
 
-  <div>
-    <%= form.label :position, style: "display: block" %>
-    <%= form.text_field :position %>
-  </div>
+    <div class="report-form-body">
+      <section class="report-evaluation-box report-evaluation-input-box">
+        <%= form.label :evaluation, class: "visually-hidden" %>
+        <%= form.textarea :evaluation, class: "report-evaluation-input", placeholder: "Evaluation" %>
+      </section>
 
-  <div>
-    <%= form.label :team, style: "display: block" %>
-    <%= form.text_field :team %>
-  </div>
+      <aside class="report-fields-panel">
+        <div class="report-field">
+          <%= form.label :position %>
+          <%= form.text_field :position %>
+        </div>
 
-  <div>
-    <%= form.label :evaluation, style: "display: block" %>
-    <%= form.textarea :evaluation %>
-  </div>
+        <div class="report-field">
+          <%= form.label :team %>
+          <%= form.text_field :team %>
+        </div>
 
-  <div>
-    <%= form.label :grade, style: "display: block" %>
-    <%= form.text_field :grade %>
-  </div>
+        <div class="report-field">
+          <%= form.label :grade %>
+          <%= form.text_field :grade %>
+        </div>
+      </aside>
+    </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+    <footer class="report-details-actions">
+      <%= form.submit "Save", class: "basic-button report-save-button" %>
+      <%= link_to "Cancel", scouting_reports_path, class: "report-action-link", data: { turbo_frame: "main_panel" } %>
+    </footer>
+  </article>
 <% end %>

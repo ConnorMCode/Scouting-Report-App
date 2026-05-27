@@ -4,6 +4,8 @@ class ScoutingReportsController < ApplicationController
   # GET /scouting_reports or /scouting_reports.json
   def index
     @scouting_reports = ScoutingReport.all
+    @total_reports = ScoutingReport.count
+    @recently_edited_report = ScoutingReport.order(updated_at: :desc).first
   end
 
   # GET /scouting_reports/1 or /scouting_reports/1.json
@@ -26,9 +28,17 @@ class ScoutingReportsController < ApplicationController
     respond_to do |format|
       if @scouting_report.save
         format.html { redirect_to @scouting_report, notice: "Scouting report was successfully created." }
+        format.turbo_stream
         format.json { render :show, status: :created, location: @scouting_report }
       else
         format.html { render :new, status: :unprocessable_content }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update(
+            "main_panel",
+            partial: "form",
+            locals: { scouting_report: @scouting_report }
+          ), status: :unprocessable_content
+        end
         format.json { render json: @scouting_report.errors, status: :unprocessable_content }
       end
     end
@@ -39,9 +49,17 @@ class ScoutingReportsController < ApplicationController
     respond_to do |format|
       if @scouting_report.update(scouting_report_params)
         format.html { redirect_to @scouting_report, notice: "Scouting report was successfully updated.", status: :see_other }
+        format.turbo_stream
         format.json { render :show, status: :ok, location: @scouting_report }
       else
         format.html { render :edit, status: :unprocessable_content }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update(
+            "main_panel",
+            partial: "form",
+            locals: { scouting_report: @scouting_report }
+          ), status: :unprocessable_content
+        end
         format.json { render json: @scouting_report.errors, status: :unprocessable_content }
       end
     end
@@ -50,9 +68,11 @@ class ScoutingReportsController < ApplicationController
   # DELETE /scouting_reports/1 or /scouting_reports/1.json
   def destroy
     @scouting_report.destroy!
+    set_dashboard_metrics
 
     respond_to do |format|
       format.html { redirect_to scouting_reports_path, notice: "Scouting report was successfully destroyed.", status: :see_other }
+      format.turbo_stream
       format.json { head :no_content }
     end
   end
@@ -66,5 +86,10 @@ class ScoutingReportsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def scouting_report_params
       params.expect(scouting_report: [ :player_name, :position, :team, :evaluation, :grade ])
+    end
+
+    def set_dashboard_metrics
+      @total_reports = ScoutingReport.count
+      @recently_edited_report = ScoutingReport.order(updated_at: :desc).first
     end
 end

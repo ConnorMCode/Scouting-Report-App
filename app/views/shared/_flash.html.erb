@@ -1,0 +1,9 @@
+<% messages = local_assigns.fetch(:messages, flash) %>
+
+<% messages.each do |type, message| %>
+  <% next if message.blank? %>
+
+  <div class="notification-message flash-<%= type %>">
+    <%= message %>
+  </div>
+<% end %>

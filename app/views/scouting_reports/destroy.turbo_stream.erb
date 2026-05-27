@@ -1,0 +1,9 @@
+<%= turbo_stream.remove dom_id(@scouting_report, :tile) %>
+
+<%= turbo_stream.update "flash" do %>
+  <%= render "shared/flash", messages: { notice: "Scouting report was successfully destroyed." } %>
+<% end %>
+
+<%= turbo_stream.update "main_panel" do %>
+  <%= render "dashboard", total_reports: @total_reports, recently_edited_report: @recently_edited_report %>
+<% end %>

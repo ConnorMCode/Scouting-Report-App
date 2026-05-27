@@ -24,9 +24,32 @@
   </head>
 
   <body>
+    <div id="flash" class="notification-container">
+      <%= render "shared/flash" %>
+    </div>
+
     <%= yield %>
 
     <script>
+      function selectFieldOnLoad(root) {
+        const input = root.querySelector('[data-select-on-load="true"]');
+
+        if(input) {
+          requestAnimationFrame(function() {
+            input.focus();
+            input.select();
+          });
+        }
+      }
+
+      function scheduleFlashDismissal(root) {
+        root.querySelectorAll(".notification-message").forEach(function(message) {
+          setTimeout(function() {
+            message.remove();
+          }, 2000);
+        });
+      }
+
       document.addEventListener("turbo:load", function() {
         const sidebar = document.getElementById("Sidebar");
         const toggle = document.getElementById("SidebarToggle");
@@ -36,6 +59,19 @@
             sidebar.classList.toggle("collapsed");
           });
         }
+
+        selectFieldOnLoad(document);
+        scheduleFlashDismissal(document);
+      })
+
+      document.addEventListener("turbo:frame-load", function(event) {
+        selectFieldOnLoad(event.target);
+      })
+
+      document.addEventListener("turbo:before-stream-render", function() {
+        requestAnimationFrame(function() {
+          scheduleFlashDismissal(document);
+        });
       })
     </script>
   </body>

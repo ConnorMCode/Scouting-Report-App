@@ -1,11 +1,5 @@
 <% content_for :title, "New scouting report" %>
 
-<h1>New scouting report</h1>
-
-<%= render "form", scouting_report: @scouting_report %>
-
-<br>
-
-<div>
-  <%= link_to "Back to scouting reports", scouting_reports_path %>
-</div>
+<%= turbo_frame_tag "main_panel" do %>
+  <%= render "form", scouting_report: @scouting_report %>
+<% end %>

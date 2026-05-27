@@ -1,10 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @scouting_report %>
-
-<div>
-  <%= link_to "Edit this scouting report", edit_scouting_report_path(@scouting_report) %> |
-  <%= link_to "Back to scouting reports", scouting_reports_path %>
-
-  <%= button_to "Destroy this scouting report", @scouting_report, method: :delete %>
-</div>
+<%= turbo_frame_tag "main_panel" do %>
+  <%= render "report_details", scouting_report: @scouting_report %>
+<% end %>

@@ -1,0 +1,20 @@
+<article class="report-details">
+  <header class="report-details-header">
+    <h1><%= scouting_report.player_name %></h1>
+    <div class="report-details-summary">
+      <span><%= scouting_report.position %></span>
+      <span><%= scouting_report.team %></span>
+      <span><%= scouting_report.grade %></span>
+    </div>
+  </header>
+
+  <section class="report-evaluation-box">
+    <%= simple_format(scouting_report.evaluation) %>
+  </section>
+
+  <footer class="report-details-actions">
+    <%= link_to "Edit", edit_scouting_report_path(scouting_report), class: "report-action-link", data: { turbo_frame: "main_panel" } %>
+    <%= link_to "Back to dashboard", scouting_reports_path, class: "report-action-link", data: { turbo_frame: "main_panel" } %>
+    <%= button_to "Delete scouting report", scouting_report, method: :delete, class: "basic-button" %>
+  </footer>
+</article>

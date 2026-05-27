@@ -1,0 +1,34 @@
+<section class="reports-dashboard">
+  <header class="dashboard-header">
+    <h2>Scouting Reports Dashboard</h2>
+    <div class="dashboard-total">
+      <span class="dashboard-total-number"><%= total_reports %></span>
+      <span><%= "report".pluralize(total_reports) %></span>
+    </div>
+  </header>
+
+  <div class="dashboard-section">
+    <h3>Most Recently Edited</h3>
+
+    <% if recently_edited_report.present? %>
+      <%= link_to recently_edited_report, class: "recent-report-card", data: { turbo_frame: "main_panel" } do %>
+        <header class="recent-report-header">
+          <h4><%= recently_edited_report.player_name %></h4>
+          <div class="recent-report-summary">
+            <span><%= recently_edited_report.position %></span>
+            <span><%= recently_edited_report.team %></span>
+            <span><%= recently_edited_report.grade %></span>
+          </div>
+        </header>
+
+        <div class="recent-report-evaluation">
+          <%= recently_edited_report.evaluation.presence || "No evaluation yet." %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="recent-report-empty">
+        No scouting reports yet.
+      </div>
+    <% end %>
+  </div>
+</section>

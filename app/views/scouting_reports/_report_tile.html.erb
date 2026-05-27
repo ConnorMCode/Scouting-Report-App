@@ -1,0 +1,5 @@
+<%= link_to scouting_report, id: dom_id(scouting_report, :tile), class: "report-tile", data: { turbo_frame: "main_panel" } do %>
+  <div class="report-name"><%= scouting_report.player_name %></div>
+  <div class="report-position"><%= scouting_report.position %></div>
+  <div class="report-team"><%= scouting_report.team %></div>
+<% end %>
