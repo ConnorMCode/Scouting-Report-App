@@ -1,0 +1,2 @@
+class ScoutingReport < ApplicationRecord
+end

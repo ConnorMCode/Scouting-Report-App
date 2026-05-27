@@ -1,0 +1,187 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+body {
+  margin: 0;
+  background-color: #f3f4f6;
+  color: #111827;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app-main {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 360px;
+  min-width: 360px;
+  height: 100vh;
+
+  background-color: #ffffff;
+  border-right: 1px solid #d1d5db;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  overflow-y: auto;
+
+  transition: width 0.2s ease, min-width 0.2s ease;
+}
+
+.sidebar.collapsed {
+  width: 76px;
+  min-width: 76px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+}
+
+.sidebar-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.sidebar-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-toggle {
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sidebar-toggle:hover {
+  background-color: #f3f4f6;
+}
+
+.new-report-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 8px;
+  background-color: #111827;
+  color: white;
+
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.new-report-button:hover {
+  background-color: #374151;
+}
+
+.reports-column-header {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 0.75fr;
+    gap: 12px;
+
+    padding: 0 12px 8px 12px;
+
+    color: #6b7280;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.reports-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.report-tile {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 0.75fr;
+    gap: 12px;
+    align-items: center;
+
+    padding: 14px 12px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background-color: #ffffff;
+
+    color: #111827;
+    text-decoration: none;
+}
+
+.report-tile:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.report-name {
+    font-weight: 500;
+}
+
+.report-team,
+.report-position {
+    color: #6b7280;
+}
+
+.main-panel {
+  flex: 1;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.main-panel h2 {
+  margin-top: 0;
+}
+
+/* Collapsed sidebar behavior */
+.sidebar.collapsed .sidebar-header h1,
+.sidebar.collapsed .reports-column-header,
+.sidebar.collapsed .report-team,
+.sidebar.collapsed .report-position {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-header {
+  justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-actions {
+  flex-direction: column;
+}
+
+.sidebar.collapsed .report-tile {
+  display: block;
+  padding: 12px;
+  text-align: center;
+}
+
+.sidebar.collapsed .report-name {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

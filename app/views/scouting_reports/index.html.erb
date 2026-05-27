@@ -1,0 +1,39 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Scouting reports" %>
+
+<div class="app-main">
+  <aside class="sidebar" id="Sidebar">
+    <div class="sidebar-header">
+      <h2>Scouting Reports</h2>
+
+      <div class ="sidebar-header-actions">
+        <button class="sidebar-toggle" id="SidebarToggle" type="button">
+          ≡
+        </button>
+
+        <%= link_to "+", new_scouting_report_path, class: "new-report-button", title: "New scouting report" %>
+      </div>
+    </div>
+
+    <div class="reports-column-header">
+      <div>Player Name</div>
+      <div>Position</div>
+      <div>Team</div>
+    </div>
+
+    <div id="scoutingReports" class="reports-list">
+      <% @scouting_reports.each do |scouting_report| %>
+        <%= link_to scouting_report, class: "report-tile" do %>
+          <div class="report-name"><%= scouting_report.player_name %></div>
+          <div class="report-position"><%= scouting_report.position %></div>
+          <div class="report-team"><%= scouting_report.team %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </aside>
+
+  <main class="main-panel">
+    <h2>Scouting Report Dashboard</h2>
+    <p>Select a report from the left, or create a new one.</p>
+  </main>
