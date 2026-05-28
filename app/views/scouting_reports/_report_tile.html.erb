@@ -1,4 +1,7 @@
-<%= link_to scouting_report, id: dom_id(scouting_report, :tile), class: "report-tile", data: { turbo_frame: "main_panel" } do %>
+<% grade = scouting_report.grade.to_s.strip.first&.upcase %>
+<% grade_class = "report-tile-grade-#{grade.downcase}" if %w[A B C D F].include?(grade) %>
+
+<%= link_to scouting_report, id: dom_id(scouting_report, :tile), class: ["report-tile", grade_class], data: { turbo_frame: "main_panel", report_search_target: "item", report_name: scouting_report.player_name } do %>
   <div class="report-name"><%= scouting_report.player_name %></div>
   <div class="report-position"><%= scouting_report.position %></div>
   <div class="report-team"><%= scouting_report.team %></div>

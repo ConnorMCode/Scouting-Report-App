@@ -1,7 +1,7 @@
 <% content_for :title, "Scouting reports" %>
 
 <div class="app-main">
-  <aside class="sidebar" id="Sidebar">
+  <aside class="sidebar" id="Sidebar" data-controller="report-search">
     <div class="sidebar-header">
       <h2>Scouting Reports</h2>
 
@@ -12,6 +12,19 @@
 
         <%= link_to "+", new_scouting_report_path, class: "new-report-button", title: "New scouting report", data: { turbo_frame: "main_panel" } %>
       </div>
+    </div>
+
+    <div class="sidebar-search">
+      <label class="visually-hidden" for="reportSearch">Search reports by player name</label>
+      <input
+        id="reportSearch"
+        class="sidebar-search-input"
+        type="search"
+        placeholder="Search player name"
+        autocomplete="off"
+        data-report-search-target="input"
+        data-action="input->report-search#filter"
+      >
     </div>
 
     <div class="reports-column-header">
@@ -25,6 +38,8 @@
         <%= render "report_tile", scouting_report: scouting_report %>
       <% end %>
     </div>
+
+    <p class="reports-empty" data-report-search-target="empty" hidden>No matching reports.</p>
   </aside>
 
   <main class="main-panel">

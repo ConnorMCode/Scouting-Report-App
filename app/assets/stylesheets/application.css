@@ -120,6 +120,32 @@ body {
   background-color: #374151;
 }
 
+.sidebar-search {
+  margin-bottom: 16px;
+}
+
+.sidebar-search-input {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  color: #111827;
+  font: inherit;
+  font-size: 14px;
+}
+
+.sidebar-search-input:focus {
+  border-color: #9ca3af;
+  outline: none;
+}
+
+.sidebar-search-input::placeholder {
+  color: #9ca3af;
+}
+
 .reports-column-header {
     display: grid;
     grid-template-columns: 2fr 1.5fr 0.75fr;
@@ -160,6 +186,60 @@ body {
     border-color: #9ca3af;
 }
 
+.report-tile-grade-a {
+    background-color: #ecfdf3;
+    border-color: #bbf7d0;
+}
+
+.report-tile-grade-a:hover {
+    background-color: #dcfce7;
+    border-color: #86efac;
+}
+
+.report-tile-grade-b {
+    background-color: #f3fae8;
+    border-color: #d9f99d;
+}
+
+.report-tile-grade-b:hover {
+    background-color: #ecfccb;
+    border-color: #bef264;
+}
+
+.report-tile-grade-c {
+    background-color: #fffbeb;
+    border-color: #fde68a;
+}
+
+.report-tile-grade-c:hover {
+    background-color: #fef3c7;
+    border-color: #fcd34d;
+}
+
+.report-tile-grade-d {
+    background-color: #fff4e6;
+    border-color: #fed7aa;
+}
+
+.report-tile-grade-d:hover {
+    background-color: #ffedd5;
+    border-color: #fdba74;
+}
+
+.report-tile-grade-f {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+}
+
+.report-tile-grade-f:hover {
+    background-color: #fee2e2;
+    border-color: #fca5a5;
+}
+
+.report-tile[hidden] {
+    display: none;
+}
+
 .report-name {
     font-weight: 500;
 }
@@ -167,6 +247,16 @@ body {
 .report-team,
 .report-position {
     color: #6b7280;
+}
+
+.reports-empty {
+  margin: 14px 0 0;
+  padding: 14px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  color: #6b7280;
+  font-size: 14px;
 }
 
 .main-panel {
@@ -552,8 +642,10 @@ body {
 /* Collapsed sidebar behavior */
 .sidebar.collapsed .sidebar-header h1,
 .sidebar.collapsed .sidebar-header h2,
+.sidebar.collapsed .sidebar-search,
 .sidebar.collapsed .reports-column-header,
 .sidebar.collapsed .reports-list,
+.sidebar.collapsed .reports-empty,
 .sidebar.collapsed .report-team,
 .sidebar.collapsed .report-position {
   display: none;
