@@ -23,8 +23,6 @@ export default class extends Controller {
       if (isVisible) visibleCount += 1
     })
 
-    if (this.hasEmptyTarget) {
-      this.emptyTarget.hidden = query.length === 0 || visibleCount > 0
-    }
+    this.emptyTarget.hidden = query.length === 0 || visibleCount > 0
   }
 }

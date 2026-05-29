@@ -3,7 +3,7 @@
 <% messages.each do |type, message| %>
   <% next if message.blank? %>
 
-  <div class="notification-message flash-<%= type %>">
+  <div class="notification-message flash-notice">
     <%= message %>
   </div>
 <% end %>

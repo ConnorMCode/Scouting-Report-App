@@ -14,7 +14,7 @@
   <article class="report-details report-form-layout">
     <header class="report-details-header">
       <%= form.label :player_name, class: "visually-hidden" %>
-      <%= form.text_field :player_name, class: "report-name-input", placeholder: "Player name", autofocus: scouting_report.new_record?, data: { select_on_load: scouting_report.new_record? } %>
+      <%= form.text_field :player_name, class: "report-name-input", placeholder: "Player name", data: { select_on_load: scouting_report.new_record? } %>
     </header>
 
     <div class="report-form-body">
