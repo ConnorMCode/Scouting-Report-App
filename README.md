@@ -1,9 +1,9 @@
 
 # README
 
-<img width="1338" height="1157" alt="Capture" src="https://github.com/user-attachments/assets/c7e98919-f1cc-442d-bd45-fb1ec85bdb90" />
+<img width="2560" height="1313" alt="Capture" src="https://github.com/user-attachments/assets/74e8449e-12ac-43a1-b420-003bacfbd17f" />
 
-<img width="1944" height="1290" alt="Capture2" src="https://github.com/user-attachments/assets/40593cbc-37db-47cd-86e2-589f4f94b764" />
+<img width="2560" height="1305" alt="Capture2" src="https://github.com/user-attachments/assets/05448d88-8d53-451f-b284-52695db573e7" />
 
 ## How to run:
 
